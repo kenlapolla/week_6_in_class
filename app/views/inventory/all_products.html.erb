@@ -1,0 +1,32 @@
+<h1>Inventory#all_products</h1>
+<p>Find me in app/views/inventory/all_products.html.erb</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Category</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= number_to_currency product.price, precision:2, :negative_format => "(%u%n)", unit: "$", seperator: ","%></td>
+        <td> <%= product.category %></td>
+        <td> <%= link_to('Show', {:controller=>'inventory', :action=>'show', :id=>product.id}) %></td>
+        <td> <%= link_to('One Product', {:controller=>'inventory', :action=>'one_product', :id=>product.id}) %></td>
+        <td> <%= link_to 'By Category', {:controller=>'inventory', :action=>'by_category'} %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Product', new_product_path %>
+
+</table>
